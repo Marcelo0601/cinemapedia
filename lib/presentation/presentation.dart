@@ -1,0 +1,11 @@
+export 'providers/movies/movie_providers.dart';
+export 'providers/movies/movies_repository_provider.dart';
+export 'providers/movies/movies_slideshow_provider.dart';
+export 'providers/providers.dart';
+export 'screens/movies/home_screen.dart';
+export 'screens/screens.dart';
+export 'widgets/movies/movie_horizontal_listview.dart';
+export 'widgets/movies/movies_slideshow.dart';
+export 'widgets/shared/custom_appbar.dart';
+export 'widgets/shared/custom_bottom_navigation.dart';
+export 'widgets/widgets.dart';
