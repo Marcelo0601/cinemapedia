@@ -16,13 +16,7 @@ workflows:
           sed -i '' 's/CODE_SIGNING_ALLOWED = YES/CODE_SIGNING_ALLOWED = NO/g' Runner.xcodeproj/project.pbxproj
       - name: Build IPA
         script: flutter build ipa --no-codesign
-      - name: Package IPA from archive
-        script: |
-          mkdir -p build/ios/ipa
-          cd build/ios/archive/Runner.xcarchive/Products/Applications
-          mkdir -p Payload
-          cp -r Runner.app Payload/
-          zip -r ../../../../../ipa/Runner.ipa Payload
-          rm -rf Payload
     artifacts:
       - build/ios/ipa/*.ipa
+      - build/ios/archive/*.xcarchive
+      - "**/*.ipa"
