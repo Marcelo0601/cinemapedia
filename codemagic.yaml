@@ -1,12 +1,20 @@
 workflows:
   ios-build:
     name: iOS Build
+    instance_type: mac_mini_m1
     environment:
       flutter: stable
-
+      xcode: latest
+      cocoapods: default
     scripts:
-      - flutter pub get
-      - flutter build ipa --no-codesign
-
+      - name: Get Flutter dependencies
+        script: flutter pub get
+      - name: Disable code signing
+        script: |
+          cd ios
+          sed -i '' 's/CODE_SIGNING_REQUIRED = YES/CODE_SIGNING_REQUIRED = NO/g' Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/CODE_SIGNING_ALLOWED = YES/CODE_SIGNING_ALLOWED = NO/g' Runner.xcodeproj/project.pbxproj
+      - name: Build IPA
+        script: flutter build ipa --no-codesign
     artifacts:
       - build/ios/ipa/*.ipa
